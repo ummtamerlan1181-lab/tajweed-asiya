@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Устаза Асия — таджвид и чтение Корана онлайн</title>
+<meta name="description" content="Онлайн-занятия по таджвиду и чтению Корана с устазой Асией. Индивидуальный подход для взрослых и детей. Запись через Telegram."/>
+<meta property="og:title" content="Устаза Асия — обучение таджвиду онлайн"/>
+<meta property="og:description" content="Научитесь читать Коран правильно — с нуля. Индивидуальные занятия онлайн."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config={theme:{extend:{colors:{'gd':'#060d09','gd2':'#0a1510','gm':'#1a5c42','gold':'#d4a853','gold-l':'#e8c878','cream':'#fdf8f0','beige':'#f5ede0','dk':'#0e2018'},fontFamily:{'arabic':['Amiri','serif'],'h':['Cormorant Garamond','serif'],'b':['Outfit','sans-serif']}}}}
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:#fdf8f0;color:#1c1c1c;font-family:'Outfit',sans-serif;overflow-x:hidden}
+
+/* Progress */
+#pbar{position:fixed;top:0;left:0;height:2px;width:0%;background:linear-gradient(90deg,#1a5c42,#d4a853,#e8c878);z-index:1001;transition:width .1s linear}
+
+/* Sticky CTA */
+#scta{position:fixed;bottom:24px;right:24px;opacity:0;transform:translateY(16px) scale(.95);transition:opacity .35s,transform .35s;z-index:999}
+#scta.on{opacity:1;transform:translateY(0) scale(1)}
+
+/* Nav */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,backdrop-filter .4s,border-color .4s,padding .3s}
+#nav.sc{background:rgba(6,13,9,.84);backdrop-filter:blur(22px) saturate(1.5);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 40px}
+@media(max-width:640px){#nav{padding:16px 20px}#nav.sc{padding:12px 20px}}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;font-weight:600;color:#d4a853;letter-spacing:.01em;text-decoration:none}
+.nav-cta{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:#d4a853;border:1px solid rgba(212,168,83,.55);padding:8px 22px;border-radius:50px;transition:background .25s,color .25s;text-decoration:none;white-space:nowrap}
+.nav-cta:hover{background:#d4a853;color:#060d09}
+
+/* Fade-up + blur */
+.fu{opacity:0;transform:translateY(22px);filter:blur(5px);transition:opacity .75s ease,transform .75s ease,filter .75s ease;will-change:opacity,transform,filter}
+.fu.v{opacity:1;transform:none;filter:none;will-change:auto}
+.fu.d1{transition-delay:.1s}.fu.d2{transition-delay:.2s}.fu.d3{transition-delay:.3s}.fu.d4{transition-delay:.4s}.fu.d5{transition-delay:.5s}
+
+/* Gold glow pulse */
+@keyframes gpulse{0%,100%{box-shadow:0 0 0 0 rgba(212,168,83,.4),0 8px 32px rgba(212,168,83,.22)}50%{box-shadow:0 0 0 16px rgba(212,168,83,0),0 8px 32px rgba(212,168,83,.32)}}
+.pulse{animation:gpulse 2.8s ease-in-out infinite}
+
+/* Float orbs */
+@keyframes fl1{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-24px)}}
+@keyframes fl2{0%,100%{transform:translate(0,0)}50%{transform:translate(-16px,18px)}}
+.orb1{animation:fl1 14s ease-in-out infinite;will-change:transform}
+.orb2{animation:fl2 18s ease-in-out infinite;will-change:transform}
+
+/* Slow star spin */
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+.spin-slow{animation:spin-slow 90s linear infinite;transform-origin:50% 50%;will-change:transform}
+
+/* Diamond bg pattern (dark sections) */
+.dpat{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='none' stroke='%23d4a853' stroke-width='.35' opacity='.09'/%3E%3C/svg%3E")}
+
+/* Glass card */
+.gcard{background:rgba(10,21,16,.55);backdrop-filter:blur(24px) saturate(1.4);border:1px solid rgba(255,255,255,.07);border-radius:20px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.gcard::before{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,rgba(255,255,255,.05) 0%,transparent 55%);opacity:0;transition:opacity .35s;pointer-events:none}
+.gcard:hover::before{opacity:1}
+.gcard:hover{border-color:rgba(212,168,83,.2)}
+
+/* Light premium card */
+.lcard{background:#fff;border:1px solid rgba(212,168,83,.16);box-shadow:0 2px 20px rgba(6,13,9,.05);border-radius:20px;transition:border-color .3s,box-shadow .3s,transform .3s}
+.lcard:hover{border-color:rgba(212,168,83,.45);box-shadow:0 8px 36px rgba(212,168,83,.1);transform:translateY(-3px)}
+
+/* Price card hover — only for standalone dark card, not lcard */
+.tcard{transition:transform .3s,box-shadow .3s}
+.tcard:not(.lcard):hover{transform:translateY(-6px)}
+
+/* Hover utilities (replaces inline onmouseover) */
+.prog-item:hover{background:rgba(255,255,255,.6)}
+.btn-dark{background:#060d09;color:#f0ebe0;text-decoration:none;transition:background .25s}
+.btn-dark:hover{background:#1a5c42}
+.btn-gold{background:#d4a853;color:#060d09;text-decoration:none;transition:background .25s}
+.btn-gold:hover{background:#e8c878}
+.btn-cta{text-decoration:none;transition:background .25s}
+.btn-cta:hover{background:#e8c878!important}
+.foot-tg{text-decoration:none;transition:color .25s;color:rgba(240,235,224,.38)}
+.foot-tg:hover{color:#d4a853}
+
+/* Section gradient dividers */
+.div-dl{height:72px;background:linear-gradient(to bottom,#060d09,#fdf8f0)}
+.div-ld{height:72px;background:linear-gradient(to bottom,#fdf8f0,#060d09)}
+.div-db{height:72px;background:linear-gradient(to bottom,#060d09,#f5ede0)}
+.div-bd{height:72px;background:linear-gradient(to bottom,#f5ede0,#060d09)}
+.div-cd{height:72px;background:linear-gradient(to bottom,#fdf8f0,#060d09)}
+
+/* Dots */
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(212,168,83,.3);transition:background .3s,width .3s}
+.dot.act{background:#d4a853;width:20px;border-radius:3px}
+
+/* FAQ */
+.fa-ans{max-height:0;overflow:hidden;transition:max-height .45s ease}
+.fa-ans.open{max-height:600px}
+.fa-ico{transition:transform .3s}
+.fa-ico.open{transform:rotate(45deg)}
+.fa-item{border-left:2px solid transparent;transition:border-color .3s,background .3s;border-radius:16px}
+.fa-item.fopen{border-left-color:#d4a853}
+
+/* Ornamental divider (light sections) */
+.orndiv{display:flex;align-items:center;justify-content:center;gap:14px;padding:4px 0}
+.orndiv .oln{height:1px;width:48px;background:linear-gradient(90deg,transparent,rgba(212,168,83,.35),transparent)}
+
+/* Reduced motion */
+/* Custom cursor */
+@media(hover:hover) and (pointer:fine){body,a,button,[role="button"]{cursor:none}}
+#cur-dot{position:fixed;width:6px;height:6px;border-radius:50%;background:#d4a853;box-shadow:0 0 8px 2px rgba(212,168,83,.85);pointer-events:none;z-index:10000;transform:translate(-50%,-50%);will-change:left,top;transition:opacity .2s}
+#cur-ring{position:fixed;width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(212,168,83,.55);box-shadow:0 0 14px rgba(212,168,83,.28),inset 0 0 6px rgba(212,168,83,.06);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .22s ease,height .22s ease,border-color .22s ease,box-shadow .22s ease,opacity .2s;will-change:left,top}
+#cur-ring.cur-hover{width:52px;height:52px;border-color:rgba(212,168,83,.9);box-shadow:0 0 24px rgba(212,168,83,.5),inset 0 0 10px rgba(212,168,83,.1)}
+@media(hover:none),(pointer:coarse){#cur-dot,#cur-ring{display:none}}
+
+@media(prefers-reduced-motion:reduce){.pulse,.orb1,.orb2,.spin-slow{animation:none}.fu{transition:none;opacity:1;transform:none;filter:none}}
+
+/* ── Screenshot reviews grid */
+.sc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(min-width:640px) and (max-width:767px){.sc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:639px){.sc-grid{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-ms-overflow-style:none;padding-bottom:20px;cursor:grab}.sc-grid::-webkit-scrollbar{display:none}.sc-grid.sgrab{cursor:grabbing}}
+.sc-card{background:rgba(10,21,16,.58);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s}
+.sc-card:hover{border-color:rgba(212,168,83,.28);box-shadow:0 8px 40px rgba(212,168,83,.08);transform:translateY(-4px)}
+@media(max-width:639px){.sc-card{flex-shrink:0;width:280px;scroll-snap-align:start;transform:none!important}}
+.sc-img-wrap{position:relative;height:380px;overflow:hidden;background:rgba(6,13,9,.85)}
+.sc-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.sc-img-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:52px;background:linear-gradient(transparent,rgba(10,21,16,.85));pointer-events:none}
+.priv-band{position:absolute;top:0;left:0;right:0;height:68px;background:rgba(6,13,9,.86);backdrop-filter:blur(18px) saturate(1.4);display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid rgba(255,255,255,.06);z-index:2}
+.priv-av{width:34px;height:34px;border-radius:50%;background:rgba(212,168,83,.12);border:1px solid rgba(212,168,83,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.priv-name{font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;color:rgba(240,235,224,.6)}
+.sc-foot{padding:12px 16px;border-top:1px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between}
+.sc-time{font-family:'Outfit',sans-serif;font-size:11px;color:rgba(240,235,224,.3)}
+.sc-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:.25}
+.sc-empty{background:repeating-linear-gradient(45deg,rgba(255,255,255,.02) 0px,rgba(255,255,255,.02) 1px,transparent 1px,transparent 12px)!important}
+.sc-empty img{opacity:0}
+.sc-empty::before{content:'reviews/N.jpg';position:absolute;inset:0;display:grid;place-items:center;padding-top:68px;font-family:'Outfit',sans-serif;font-size:12px;color:rgba(212,168,83,.35);letter-spacing:.05em;pointer-events:none}
+.sc-last{grid-column:2}
+@media(min-width:640px) and (max-width:767px){.sc-last{grid-column:auto}}
+.sc-dots{display:none;justify-content:center;gap:8px;margin-top:10px}
+@media(max-width:639px){.sc-dots{display:flex}}
+</style>
+</head>
+<body>
+<div id="cur-dot" aria-hidden="true"></div>
+<div id="cur-ring" aria-hidden="true"></div>
+
+<div id="pbar"></div>
+
+<!-- Sticky CTA -->
+<div id="scta">
+  <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+     class="flex items-center gap-2 bg-gold text-gd font-b font-semibold text-sm px-5 py-3 rounded-full shadow-2xl pulse"
+     style="text-decoration:none">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.9 8.22-1.97 9.28c-.15.66-.54.82-1.09.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12l-6.87 4.33-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.2 1.01.13.83.94z"/></svg>
+    Записаться
+  </a>
+</div>
+
+<!-- Navigation -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Устаза Асия</a>
+  <a href="https://t.me/Asiya_um" target="_blank" rel="noopener" class="nav-cta">Записаться →</a>
+</nav>
+
+<!-- ═══════════════════════════════
+  [1] HERO
+═══════════════════════════════ -->
+<section class="dpat relative overflow-hidden flex items-center" style="background:#060d09;min-height:100vh">
+  <!-- Glow orbs -->
+  <div class="orb1 absolute pointer-events-none" aria-hidden="true"
+       style="width:650px;height:650px;background:radial-gradient(ellipse at center,rgba(26,180,100,.13),transparent 70%);top:-120px;right:-120px"></div>
+  <div class="orb2 absolute pointer-events-none" aria-hidden="true"
+       style="width:550px;height:550px;background:radial-gradient(ellipse at center,rgba(212,168,83,.09),transparent 70%);bottom:-60px;left:-80px"></div>
+
+  <!-- Central spinning star -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
+    <svg class="spin-slow" width="580" height="580" viewBox="0 0 100 100" fill="#d4a853" opacity=".035" style="position:absolute">
+      <path d="M50 5L55 35 84 16 65 41 95 50 65 59 84 84 55 65 50 95 45 65 16 84 35 59 5 50 35 41 16 16 45 35Z"/>
+    </svg>
+  </div>
+
+  <div class="relative z-10 w-full max-w-4xl mx-auto px-6 pt-24 pb-20 md:py-32 text-center">
+    <!-- Bismillah -->
+    <div class="fu mb-6">
+      <span class="font-arabic text-2xl md:text-3xl" lang="ar" dir="rtl" style="color:rgba(212,168,83,.7);letter-spacing:.04em">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="font-h font-semibold leading-tight mb-6 fu d1" style="color:#f0ebe0;font-size:clamp(34px,7vw,80px)">
+      Научитесь читать Коран<br>
+      <em class="font-h" style="color:#d4a853;font-style:italic">правильно — с нуля</em>
+    </h1>
+
+    <!-- Sub -->
+    <p class="font-b mb-10 max-w-xl mx-auto fu d2" style="font-size:17px;color:rgba(240,235,224,.7);line-height:1.7">
+      Онлайн-занятия по таджвиду с устазой Асией.<br class="hidden sm:block">
+      Индивидуальный подход. Для взрослых и детей.
+    </p>
+
+    <!-- CTA -->
+    <div class="flex justify-center mb-14 fu d3">
+      <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-3 font-b font-semibold rounded-full pulse"
+         style="background:#d4a853;color:#060d09;font-size:17px;padding:18px 40px;text-decoration:none;transition:background .25s">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.9 8.22-1.97 9.28c-.15.66-.54.82-1.09.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12l-6.87 4.33-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.2 1.01.13.83.94z"/></svg>
+        Записаться в Telegram
+      </a>
+    </div>
+
+    <!-- Trust badges -->
+    <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 fu d4">
+      <span class="font-b text-sm flex items-center gap-2" style="color:rgba(240,235,224,.62)">
+        <span style="color:#d4a853">✦</span>
+        <span><strong style="color:rgba(240,235,224,.88)" class="cnt" data-t="200">0</strong>+ учениц</span>
+      </span>
+      <span class="font-b text-sm flex items-center gap-2" style="color:rgba(240,235,224,.62)">
+        <span style="color:#d4a853">✦</span>
+        <span><strong style="color:rgba(240,235,224,.88)" class="cnt" data-t="5">0</strong> лет преподавания</span>
+      </span>
+      <span class="font-b text-sm flex items-center gap-2" style="color:rgba(240,235,224,.62)">
+        <span style="color:#d4a853">✦</span>
+        <span>Онлайн со всего мира</span>
+      </span>
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-24 pointer-events-none" style="background:linear-gradient(to bottom,transparent,#060d09)"></div>
+</section>
+
+<!-- Gradient: dark → cream -->
+<div class="div-dl"></div>
+
+<!-- ═══════════════════════════════
+  [2] БОЛИ
+═══════════════════════════════ -->
+<section style="background:#fdf8f0;padding:80px 24px">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:#1a5c42">✦ Узнаёте себя?</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#0e2018;font-size:clamp(32px,5vw,48px)">Это знакомо многим</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-12">
+      <div class="lcard p-7 fu d1">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(14,32,24,.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e2018" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <p class="font-h font-semibold text-lg mb-2" style="color:#0e2018">«Читаю, но не уверена»</p>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Страх ошибиться в Коране — никто не поправил произношение, никто не объяснил правила.</p>
+      </div>
+
+      <div class="lcard p-7 fu d2">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(14,32,24,.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e2018" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+        </div>
+        <p class="font-h font-semibold text-lg mb-2" style="color:#0e2018">«Хочу учить детей»</p>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Мечта передать детям правильное чтение — но сама ещё не умеешь с правилами таджвида.</p>
+      </div>
+
+      <div class="lcard p-7 fu d3">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(14,32,24,.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e2018" stroke-width="1.8" stroke-linecap="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <p class="font-h font-semibold text-lg mb-2" style="color:#0e2018">«Слышу красивое чтение»</p>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Душа тянется к красивому тилявату, но не знаешь с чего начать и где найти настоящего педагога.</p>
+      </div>
+
+      <div class="lcard p-7 fu d4">
+        <div class="w-11 h-11 rounded-xl flex items-center justify-center mb-5" style="background:rgba(14,32,24,.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e2018" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <p class="font-h font-semibold text-lg mb-2" style="color:#0e2018">«Начинала, но бросила»</p>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Занималась раньше — не пошло. Не было системы, поддержки и ощущения живого прогресса.</p>
+      </div>
+    </div>
+
+    <div class="text-center fu">
+      <div class="orndiv mb-4">
+        <div class="oln"></div>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" opacity=".7"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        <div class="oln"></div>
+      </div>
+      <p class="font-h font-semibold text-xl" style="color:#0e2018">Именно для этого — занятия с устазой Асией</p>
+    </div>
+  </div>
+</section>
+
+<!-- Gradient: cream → dark -->
+<div class="div-ld"></div>
+
+<!-- ═══════════════════════════════
+  [3] ОБ УСТАЗЕ
+═══════════════════════════════ -->
+<section class="dpat relative overflow-hidden" style="background:#060d09;padding:96px 24px">
+  <!-- Emerald glow orb -->
+  <div class="orb1 absolute pointer-events-none" aria-hidden="true"
+       style="width:500px;height:500px;background:radial-gradient(ellipse at center,rgba(26,180,100,.12),transparent 70%);top:-80px;left:-80px"></div>
+  <!-- Gold glow orb -->
+  <div class="orb2 absolute pointer-events-none" aria-hidden="true"
+       style="width:400px;height:400px;background:radial-gradient(ellipse at center,rgba(212,168,83,.07),transparent 70%);bottom:-40px;right:-60px"></div>
+
+  <div class="max-w-4xl mx-auto relative z-10">
+    <div class="text-center mb-14 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:rgba(212,168,83,.85)">✦ Ваш педагог</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#f0ebe0;font-size:clamp(32px,5vw,48px)">Об устазе Асие</h2>
+    </div>
+
+    <div class="gcard p-8 md:p-12 fu d1">
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <!-- Avatar ornament -->
+        <div class="flex-shrink-0 mx-auto md:mx-0">
+          <div class="w-24 h-24 rounded-full flex items-center justify-center" style="border:1.5px solid rgba(212,168,83,.4);background:rgba(26,92,66,.35)">
+            <svg width="44" height="44" viewBox="0 0 100 100" fill="#d4a853" opacity=".85">
+              <path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="flex-1">
+          <h3 class="font-h font-semibold text-3xl mb-4" style="color:#d4a853">Асия</h3>
+          <p class="font-b leading-relaxed mb-5" style="font-size:15px;color:rgba(240,235,224,.72)">
+            Изучаю и преподаю Коран <strong style="color:#d4a853">5 лет</strong>.
+            Получила подготовку по таджвиду и чтению Корана по традиционной цепочке передачи знания.
+            Прошла обучение у опытных устазов.
+          </p>
+          <p class="font-h leading-relaxed mb-10" style="font-size:18px;font-style:italic;color:rgba(240,235,224,.65)">
+            «Мой подход — терпение, система и любовь к этой науке.
+            Каждая ученица идёт в своём темпе. Без стресса и осуждения.»
+          </p>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4" style="border-top:1px solid rgba(255,255,255,.07);padding-top:28px">
+            <div class="text-center">
+              <div class="font-h font-semibold" style="color:#d4a853;font-size:clamp(36px,5vw,52px);line-height:1"><span class="cnt" data-t="200">0</span>+</div>
+              <div class="font-b text-xs mt-1" style="color:rgba(240,235,224,.62)">учениц</div>
+            </div>
+            <div class="text-center" style="border-left:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07)">
+              <div class="font-h font-semibold" style="color:#d4a853;font-size:clamp(36px,5vw,52px);line-height:1"><span class="cnt" data-t="5">0</span></div>
+              <div class="font-b text-xs mt-1" style="color:rgba(240,235,224,.62)">лет преподавания</div>
+            </div>
+            <div class="text-center">
+              <div class="font-h font-semibold" style="color:#d4a853;font-size:clamp(32px,4vw,48px);line-height:1">7–65</div>
+              <div class="font-b text-xs mt-1" style="color:rgba(240,235,224,.62)">возраст учениц</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gradient: dark → beige -->
+<div class="div-db"></div>
+
+<!-- ═══════════════════════════════
+  [4] ЧТО ВЫ ОСВОИТЕ
+═══════════════════════════════ -->
+<section style="background:#f5ede0;padding:80px 24px">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-14 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:#1a5c42">✦ Программа</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#0e2018;font-size:clamp(32px,5vw,48px)">Что вы освоите</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <div class="flex items-start gap-4 p-5 rounded-xl prog-item fu d1">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(212,168,83,.15)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        </div>
+        <div>
+          <p class="font-h font-semibold text-base mb-1" style="color:#0e2018">Правила таджвида</p>
+          <p class="font-b text-sm" style="color:#6b7280;line-height:1.6">Махариджи и сыфаты — места и характеристики звуков</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl prog-item fu d2">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(212,168,83,.15)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        </div>
+        <div>
+          <p class="font-h font-semibold text-base mb-1" style="color:#0e2018">Произношение арабских букв</p>
+          <p class="font-b text-sm" style="color:#6b7280;line-height:1.6">Правильная артикуляция каждого звука с нуля</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl prog-item fu d3">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(212,168,83,.15)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        </div>
+        <div>
+          <p class="font-h font-semibold text-base mb-1" style="color:#0e2018">Мадд, гунна, ихфа, изхар</p>
+          <p class="font-b text-sm" style="color:#6b7280;line-height:1.6">Все основные правила таджвида по системе</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl prog-item fu d4">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(212,168,83,.15)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        </div>
+        <div>
+          <p class="font-h font-semibold text-base mb-1" style="color:#0e2018">Самостоятельное чтение Корана</p>
+          <p class="font-b text-sm" style="color:#6b7280;line-height:1.6">Читать с харакатами без посторонней помощи</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl prog-item fu d1">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(212,168,83,.15)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        </div>
+        <div>
+          <p class="font-h font-semibold text-base mb-1" style="color:#0e2018">Красивое чтение вслух</p>
+          <p class="font-b text-sm" style="color:#6b7280;line-height:1.6">Уверенное, выразительное тиляват</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 p-5 rounded-xl prog-item fu d2">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(212,168,83,.15)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+        </div>
+        <div>
+          <p class="font-h font-semibold text-base mb-1" style="color:#0e2018">Суры для намаза</p>
+          <p class="font-b text-sm" style="color:#6b7280;line-height:1.6">Аяты и суры, нужные в ежедневной молитве</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Light ornament divider -->
+<div style="background:#fdf8f0;padding:6px 0">
+  <div class="orndiv">
+    <div class="oln"></div>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="#d4a853" opacity=".5"><path d="M12 2L14.5 9 21 7 16.5 12 21 17 14.5 15 12 22 9.5 15 3 17 7.5 12 3 7 9.5 9Z"/></svg>
+    <div class="oln"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════
+  [5] КАК ПРОХОДЯТ УРОКИ
+═══════════════════════════════ -->
+<section style="background:#fdf8f0;padding:80px 24px">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:#1a5c42">✦ Процесс</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#0e2018;font-size:clamp(32px,5vw,48px)">Как это работает</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+      <!-- Connector line desktop -->
+      <div class="hidden md:block absolute pointer-events-none" style="top:36px;left:13%;right:13%;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,83,.3),rgba(212,168,83,.3),transparent)"></div>
+
+      <div class="relative z-10 text-center fu d1">
+        <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg" style="background:#060d09;border:1px solid rgba(212,168,83,.35)">
+          <span class="font-h font-semibold" style="color:#d4a853;font-size:26px">1</span>
+        </div>
+        <h3 class="font-h font-semibold text-lg mb-2" style="color:#0e2018">Заявка</h3>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Пишете в Telegram — обсуждаем уровень и цели</p>
+      </div>
+
+      <div class="relative z-10 text-center fu d2">
+        <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg" style="background:#060d09;border:1px solid rgba(212,168,83,.35)">
+          <span class="font-h font-semibold" style="color:#d4a853;font-size:26px">2</span>
+        </div>
+        <h3 class="font-h font-semibold text-lg mb-2" style="color:#0e2018">Пробный урок</h3>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Знакомство и диагностика произношения</p>
+      </div>
+
+      <div class="relative z-10 text-center fu d3">
+        <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg" style="background:#060d09;border:1px solid rgba(212,168,83,.35)">
+          <span class="font-h font-semibold" style="color:#d4a853;font-size:26px">3</span>
+        </div>
+        <h3 class="font-h font-semibold text-lg mb-2" style="color:#0e2018">Программа</h3>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Индивидуальный план по темпу и расписанию</p>
+      </div>
+
+      <div class="relative z-10 text-center fu d4">
+        <div class="w-[72px] h-[72px] rounded-full flex items-center justify-center mx-auto mb-5 shadow-lg" style="background:#d4a853">
+          <span class="font-h font-semibold" style="color:#060d09;font-size:26px">4</span>
+        </div>
+        <h3 class="font-h font-semibold text-lg mb-2" style="color:#0e2018">Практика</h3>
+        <p class="font-b text-sm leading-relaxed" style="color:#6b7280">Регулярные уроки + домашние задания с обратной связью</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Beige divider -->
+<div style="height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,83,.2),transparent);margin:0 5%"></div>
+
+<!-- ═══════════════════════════════
+  [6] ФОРМАТЫ И ЦЕНЫ
+═══════════════════════════════ -->
+<section style="background:#f5ede0;padding:80px 24px">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:#1a5c42">✦ Форматы</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#0e2018;font-size:clamp(32px,5vw,48px)">Выберите своё</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Adults -->
+      <div class="lcard p-7 tcard fu d1">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:rgba(14,32,24,.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e2018" stroke-width="1.8" stroke-linecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <h3 class="font-h font-semibold text-2xl mb-2" style="color:#0e2018">Для взрослых</h3>
+        <p class="font-b text-sm leading-relaxed mb-6" style="color:#6b7280">Индивидуальные уроки онлайн. 45–60 минут. По удобному расписанию.</p>
+        <div class="font-b font-semibold text-sm mb-6" style="color:#d4a853">Уточнить в Telegram</div>
+        <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+           class="block text-center font-b font-semibold text-sm py-3 rounded-xl btn-dark">Записаться</a>
+      </div>
+
+      <!-- Children featured (dark) -->
+      <div class="tcard relative fu d2" style="background:#060d09;border:1px solid rgba(212,168,83,.35);box-shadow:0 0 60px rgba(212,168,83,.12),0 20px 40px rgba(0,0,0,.25);border-radius:20px;padding:28px">
+        <div class="absolute" style="top:-14px;left:50%;transform:translateX(-50%);background:#d4a853;color:#060d09;font-family:'Outfit',sans-serif;font-size:11px;font-weight:600;padding:5px 16px;border-radius:50px;white-space:nowrap">Популярное</div>
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:rgba(212,168,83,.15)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#d4a853" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="font-h font-semibold text-2xl mb-2" style="color:#f0ebe0">Для детей</h3>
+        <p class="font-b text-sm leading-relaxed mb-6" style="color:rgba(240,235,224,.58)">Занятия от 7 лет. Адаптированная программа. Живой, игровой подход.</p>
+        <div class="font-b font-semibold text-sm mb-6" style="color:#d4a853">Уточнить в Telegram</div>
+        <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+           class="block text-center font-b font-bold text-sm py-3 rounded-xl btn-gold">Записаться</a>
+      </div>
+
+      <!-- Trial -->
+      <div class="lcard p-7 tcard fu d3">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style="background:rgba(14,32,24,.07)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0e2018" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3 class="font-h font-semibold text-2xl mb-2" style="color:#0e2018">Пробный урок</h3>
+        <p class="font-b text-sm leading-relaxed mb-6" style="color:#6b7280">Первое занятие — знакомство и диагностика. Без обязательств.</p>
+        <div class="font-b font-semibold text-sm mb-6" style="color:#d4a853">Уточнить в Telegram</div>
+        <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+           class="block text-center font-b font-semibold text-sm py-3 rounded-xl btn-dark">Попробовать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gradient: beige → dark -->
+<div class="div-bd"></div>
+
+<!-- ═══════════════════════════════
+  [7] ОТЗЫВЫ УЧЕНИЦ (скриншоты)
+═══════════════════════════════ -->
+<section class="dpat relative overflow-hidden" style="background:#060d09;padding:96px 24px">
+  <div class="absolute pointer-events-none" aria-hidden="true"
+       style="width:520px;height:520px;background:radial-gradient(ellipse at center,rgba(26,180,100,.08),transparent 70%);top:-80px;right:-80px"></div>
+  <div class="absolute pointer-events-none" aria-hidden="true"
+       style="width:420px;height:420px;background:radial-gradient(ellipse at center,rgba(212,168,83,.06),transparent 70%);bottom:-40px;left:-40px"></div>
+
+  <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center mb-14 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:rgba(212,168,83,.85)">✦ Отзывы учениц</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#f0ebe0;font-size:clamp(32px,5vw,48px)">Настоящие отзывы из переписки</h2>
+      <p class="font-b text-sm mt-3" style="color:rgba(240,235,224,.38)">Скриншоты с разрешения учениц · Личные данные скрыты</p>
+    </div>
+
+    <!-- Grid (3 col desktop · 2 col tablet · carousel mobile) -->
+    <div class="sc-grid" id="scgrid">
+
+      <!-- Карточка 1 -->
+      <div class="sc-card fu d1">
+        <div class="sc-img-wrap">
+          <img src="reviews/1.jpg" alt="Отзыв ученицы 1" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">7:24</span>
+        </div>
+      </div>
+
+      <!-- Карточка 2 -->
+      <div class="sc-card fu d2">
+        <div class="sc-img-wrap">
+          <img src="reviews/2.jpg" alt="Отзыв ученицы 2" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">4:01</span>
+        </div>
+      </div>
+
+      <!-- Карточка 3 -->
+      <div class="sc-card fu d3">
+        <div class="sc-img-wrap">
+          <img src="reviews/3.jpg" alt="Отзыв ученицы 3" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">14:12</span>
+        </div>
+      </div>
+
+      <!-- Карточка 4 -->
+      <div class="sc-card fu d4">
+        <div class="sc-img-wrap">
+          <img src="reviews/4.jpg" alt="Отзыв ученицы 4" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">15:38</span>
+        </div>
+      </div>
+
+      <!-- Карточка 5 -->
+      <div class="sc-card fu d1">
+        <div class="sc-img-wrap">
+          <img src="reviews/5.jpg" alt="Отзыв ученицы 5" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">16:14</span>
+        </div>
+      </div>
+
+      <!-- Карточка 6 -->
+      <div class="sc-card fu d2">
+        <div class="sc-img-wrap">
+          <img src="reviews/6.jpg" alt="Отзыв ученицы 6" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">16:14</span>
+        </div>
+      </div>
+
+      <!-- Карточка 7 -->
+      <div class="sc-card sc-last fu d3">
+        <div class="sc-img-wrap">
+          <img src="reviews/7.jpg" alt="Отзыв ученицы 7" loading="lazy"
+               onerror="this.closest('.sc-img-wrap').classList.add('sc-empty')">
+          <div class="priv-band">
+            <div class="priv-av" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 100 100" fill="#d4a853" opacity=".8"><path d="M50 8L55 37 84 18 65 43 95 50 65 57 84 82 55 63 50 92 45 63 16 82 35 57 5 50 35 43 16 18 45 37Z"/></svg>
+            </div>
+            <span class="priv-name">Ученица</span>
+          </div>
+        </div>
+        <div class="sc-foot">
+          <span style="color:#d4a853;font-size:12px;letter-spacing:.5px">★★★★★</span>
+          <span class="sc-time">7:25</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mobile dots -->
+    <div class="sc-dots" id="scdots">
+      <div class="dot act"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <p class="text-center font-b text-xs mt-8" style="color:rgba(240,235,224,.28);font-style:italic">
+      * Личные данные (имена, аватары) скрыты. Скриншоты публикуются с разрешения учениц.
+    </p>
+  </div>
+</section>
+
+<!-- Gradient: dark → cream -->
+<div class="div-dl"></div>
+
+<!-- ═══════════════════════════════
+  [8] FAQ
+═══════════════════════════════ -->
+<section style="background:#fdf8f0;padding:80px 24px">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-14 fu">
+      <p class="font-b font-semibold text-xs uppercase tracking-widest mb-3" style="color:#1a5c42">✦ Вопросы</p>
+      <h2 class="font-h font-semibold leading-tight" style="color:#0e2018;font-size:clamp(32px,5vw,48px)">Часто спрашивают</h2>
+    </div>
+
+    <div class="space-y-2">
+
+      <div class="fa-item fu d1" style="background:#fff;border:1px solid rgba(212,168,83,.15);border-radius:16px;overflow:hidden">
+        <button class="fa-btn w-full text-left p-5 flex items-center justify-between gap-4" style="cursor:pointer;border:none;background:transparent">
+          <span class="font-h font-semibold text-base" style="color:#0e2018">Нужно ли знать арабский до начала занятий?</span>
+          <span class="fa-ico font-b text-2xl font-light flex-shrink-0" style="color:#d4a853">+</span>
+        </button>
+        <div class="fa-ans px-5">
+          <p class="font-b text-sm leading-relaxed pb-5" style="color:#6b7280">Нет. Начинаем с самых основ — алфавита и правильного произношения. Знание арабского не требуется.</p>
+        </div>
+      </div>
+
+      <div class="fa-item fu d2" style="background:#fff;border:1px solid rgba(212,168,83,.15);border-radius:16px;overflow:hidden">
+        <button class="fa-btn w-full text-left p-5 flex items-center justify-between gap-4" style="cursor:pointer;border:none;background:transparent">
+          <span class="font-h font-semibold text-base" style="color:#0e2018">С какого возраста можно учиться?</span>
+          <span class="fa-ico font-b text-2xl font-light flex-shrink-0" style="color:#d4a853">+</span>
+        </button>
+        <div class="fa-ans px-5">
+          <p class="font-b text-sm leading-relaxed pb-5" style="color:#6b7280">Дети от 7 лет занимаются по адаптированной программе. Взрослые — в любом возрасте. Среди учениц есть те, кто начал после 60 лет.</p>
+        </div>
+      </div>
+
+      <div class="fa-item fu d3" style="background:#fff;border:1px solid rgba(212,168,83,.15);border-radius:16px;overflow:hidden">
+        <button class="fa-btn w-full text-left p-5 flex items-center justify-between gap-4" style="cursor:pointer;border:none;background:transparent">
+          <span class="font-h font-semibold text-base" style="color:#0e2018">Где проходят уроки?</span>
+          <span class="fa-ico font-b text-2xl font-light flex-shrink-0" style="color:#d4a853">+</span>
+        </button>
+        <div class="fa-ans px-5">
+          <p class="font-b text-sm leading-relaxed pb-5" style="color:#6b7280">Онлайн — Zoom, Telegram или другой удобный мессенджер. Нужен только телефон или компьютер с интернетом.</p>
+        </div>
+      </div>
+
+      <div class="fa-item fu d4" style="background:#fff;border:1px solid rgba(212,168,83,.15);border-radius:16px;overflow:hidden">
+        <button class="fa-btn w-full text-left p-5 flex items-center justify-between gap-4" style="cursor:pointer;border:none;background:transparent">
+          <span class="font-h font-semibold text-base" style="color:#0e2018">Сколько времени нужно на результат?</span>
+          <span class="fa-ico font-b text-2xl font-light flex-shrink-0" style="color:#d4a853">+</span>
+        </button>
+        <div class="fa-ans px-5">
+          <p class="font-b text-sm leading-relaxed pb-5" style="color:#6b7280">Первые успехи ощутимы уже через 2–4 недели. Полноценное чтение по таджвиду — несколько месяцев при регулярных занятиях.</p>
+        </div>
+      </div>
+
+      <div class="fa-item fu d1" style="background:#fff;border:1px solid rgba(212,168,83,.15);border-radius:16px;overflow:hidden">
+        <button class="fa-btn w-full text-left p-5 flex items-center justify-between gap-4" style="cursor:pointer;border:none;background:transparent">
+          <span class="font-h font-semibold text-base" style="color:#0e2018">Можно ли заниматься без жёсткого расписания?</span>
+          <span class="fa-ico font-b text-2xl font-light flex-shrink-0" style="color:#d4a853">+</span>
+        </button>
+        <div class="fa-ans px-5">
+          <p class="font-b text-sm leading-relaxed pb-5" style="color:#6b7280">Да. Можно выбрать гибкий формат — уроки по договорённости, когда удобно вам.</p>
+        </div>
+      </div>
+
+      <div class="fa-item fu d2" style="background:#fff;border:1px solid rgba(212,168,83,.15);border-radius:16px;overflow:hidden">
+        <button class="fa-btn w-full text-left p-5 flex items-center justify-between gap-4" style="cursor:pointer;border:none;background:transparent">
+          <span class="font-h font-semibold text-base" style="color:#0e2018">Как оплачиваются уроки?</span>
+          <span class="fa-ico font-b text-2xl font-light flex-shrink-0" style="color:#d4a853">+</span>
+        </button>
+        <div class="fa-ans px-5">
+          <p class="font-b text-sm leading-relaxed pb-5" style="color:#6b7280">Оплата обсуждается индивидуально. Доступны разные способы для России, Казахстана, Германии и других стран.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Gradient: cream → dark -->
+<div class="div-cd"></div>
+
+<!-- ═══════════════════════════════
+  [9] CTA
+═══════════════════════════════ -->
+<section class="dpat relative overflow-hidden" style="background:#060d09;padding:112px 24px">
+  <!-- Mega gold glow orb (center) -->
+  <div class="absolute pointer-events-none" aria-hidden="true"
+       style="width:700px;height:700px;background:radial-gradient(circle,rgba(212,168,83,.1),transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%)"></div>
+  <!-- Emerald glow corners -->
+  <div class="absolute pointer-events-none" aria-hidden="true"
+       style="width:400px;height:400px;background:radial-gradient(ellipse at center,rgba(26,180,100,.08),transparent 70%);top:-60px;right:-60px"></div>
+  <div class="absolute pointer-events-none" aria-hidden="true"
+       style="width:350px;height:350px;background:radial-gradient(ellipse at center,rgba(26,180,100,.06),transparent 70%);bottom:-40px;left:-60px"></div>
+
+  <div class="max-w-2xl mx-auto text-center relative z-10">
+    <!-- Arabic ayat -->
+    <div class="font-arabic mb-2 fu" lang="ar" dir="rtl" style="color:rgba(212,168,83,.65);font-size:clamp(24px,4vw,36px)">وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</div>
+    <p class="font-b text-xs mb-12 fu" style="color:rgba(240,235,224,.32);font-style:italic">«И читай Коран размеренным чтением» (73:4)</p>
+
+    <h2 class="font-h font-semibold leading-tight mb-5 fu d1" style="color:#f0ebe0;font-size:clamp(38px,6vw,64px)">Готовы начать?</h2>
+    <p class="font-b leading-relaxed mb-10 fu d2" style="font-size:17px;color:rgba(240,235,224,.58)">
+      Напишите в Telegram — обсудим удобное время<br class="hidden md:block">
+      для первого урока. Это ни к чему не обязывает.
+    </p>
+
+    <div class="fu d3">
+      <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+         class="inline-flex items-center gap-3 font-b font-semibold rounded-full pulse btn-cta"
+         style="background:#d4a853;color:#060d09;font-size:17px;padding:20px 48px;text-decoration:none;box-shadow:0 0 80px rgba(212,168,83,.32)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.9 8.22-1.97 9.28c-.15.66-.54.82-1.09.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12l-6.87 4.33-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.2 1.01.13.83.94z"/></svg>
+        Написать устазе Асие
+      </a>
+    </div>
+
+    <p class="font-b text-sm mt-5 fu d4" style="color:rgba(240,235,224,.28)">Обычно отвечаю в течение нескольких часов</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════
+  [10] FOOTER
+═══════════════════════════════ -->
+<footer style="background:#030807;padding:32px 40px">
+  <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="font-b text-sm" style="color:rgba(240,235,224,.42)">© 2025 Устаза Асия — обучение таджвиду онлайн</div>
+    <a href="https://t.me/Asiya_um" target="_blank" rel="noopener"
+       class="flex items-center gap-2 font-b text-sm foot-tg">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.9 8.22-1.97 9.28c-.15.66-.54.82-1.09.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12l-6.87 4.33-2.96-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.2 1.01.13.83.94z"/></svg>
+      Telegram
+    </a>
+  </div>
+</footer>
+
+<script>
+// ── Progress + sticky CTA + nav
+const pbar = document.getElementById('pbar');
+const scta = document.getElementById('scta');
+const nav  = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+  pbar.style.width = pct + '%';
+  scta.classList.toggle('on', window.scrollY > 320);
+  nav.classList.toggle('sc', window.scrollY > 60);
+}, { passive: true });
+
+// ── Fade-up + blur
+const fo = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fu').forEach(el => fo.observe(el));
+
+// ── Counters
+const co = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, t = +el.dataset.t;
+    let c = 0; const step = t / 60;
+    const tm = setInterval(() => {
+      c = Math.min(c + step, t);
+      el.textContent = Math.floor(c);
+      if (c >= t) clearInterval(tm);
+    }, 16);
+    co.unobserve(el);
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.cnt').forEach(el => co.observe(el));
+
+// ── FAQ
+document.querySelectorAll('.fa-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const ans  = btn.nextElementSibling;
+    const ico  = btn.querySelector('.fa-ico');
+    const item = btn.closest('.fa-item');
+    const open = ans.classList.contains('open');
+    document.querySelectorAll('.fa-ans').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.fa-ico').forEach(i => i.classList.remove('open'));
+    document.querySelectorAll('.fa-item').forEach(i => i.classList.remove('fopen'));
+    if (!open) { ans.classList.add('open'); ico.classList.add('open'); if (item) item.classList.add('fopen'); }
+  });
+});
+
+// ── Screenshot carousel (mobile only — grid on desktop)
+const scGrid = document.getElementById('scgrid');
+const scDots = document.querySelectorAll('#scdots .dot');
+const scCards = document.querySelectorAll('.sc-card');
+if (scGrid && scCards.length) {
+  let sd = false, ssx = 0, ssl = 0;
+  scGrid.addEventListener('mousedown', e => { sd=true; ssx=e.pageX-scGrid.offsetLeft; ssl=scGrid.scrollLeft; scGrid.classList.add('sgrab'); });
+  scGrid.addEventListener('mouseleave', () => { sd=false; scGrid.classList.remove('sgrab'); });
+  scGrid.addEventListener('mouseup',   () => { sd=false; scGrid.classList.remove('sgrab'); });
+  scGrid.addEventListener('mousemove', e => { if(!sd) return; e.preventDefault(); scGrid.scrollLeft=ssl-(e.pageX-scGrid.offsetLeft-ssx); });
+  scGrid.addEventListener('touchstart', e => { ssx=e.touches[0].pageX; ssl=scGrid.scrollLeft; }, {passive:true});
+  scGrid.addEventListener('touchmove',  e => { scGrid.scrollLeft=ssl+(ssx-e.touches[0].pageX); }, {passive:true});
+  scGrid.addEventListener('scroll', () => {
+    const cw = scCards[0].offsetWidth + 16;
+    const idx = Math.min(Math.round(scGrid.scrollLeft / cw), scDots.length-1);
+    scDots.forEach((d,i) => d.classList.toggle('act', i===idx));
+  }, {passive:true});
+}
+
+// ── Custom cursor
+(function(){
+  if (!window.matchMedia('(hover:hover) and (pointer:fine)').matches) return;
+  const dot  = document.getElementById('cur-dot');
+  const ring = document.getElementById('cur-ring');
+  let mx = -100, my = -100, rx = -100, ry = -100;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx + 'px';
+    dot.style.top  = my + 'px';
+  }, {passive:true});
+  (function raf(){ rx+=(mx-rx)*.12; ry+=(my-ry)*.12; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(raf); })();
+  document.querySelectorAll('a,button,[role="button"],.sc-card,.lcard,.gcard,.fa-btn,.tcard,.nav-cta,.prog-item').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('cur-hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('cur-hover'));
+  });
+  document.addEventListener('mouseleave', () => { dot.style.opacity='0'; ring.style.opacity='0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity='1'; ring.style.opacity='1'; });
+})();
+</script>
+</body>
+</html>
