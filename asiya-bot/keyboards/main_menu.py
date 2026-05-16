@@ -15,6 +15,7 @@ def main_menu() -> InlineKeyboardMarkup:
             InlineKeyboardButton(text="✍️ Записаться",   callback_data="register"),
         ],
         [
+            InlineKeyboardButton(text="🌐 Сайт",            url="https://ustaza-asiya.netlify.app/"),
             InlineKeyboardButton(text="📩 Написать устазе", url="https://t.me/Asiya_um"),
         ],
     ])
