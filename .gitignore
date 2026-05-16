@@ -1,6 +1,8 @@
 # Secrets
 asiya-bot/.env
 asiya-bot/creds.json
+vexora-bot/.env
+vexora-bot/creds.json
 
 # Python
 __pycache__/
@@ -12,6 +14,7 @@ venv/
 # Node
 asiya-web/node_modules/
 asiya-web/.next/
+vexora-bot/node_modules/
 
 # OS
 .DS_Store
